@@ -27,6 +27,10 @@ import (
 	circleci "github.com/jszwedko/go-circleci"
 )
 
+// Version is the current release number. This value is calculated at build-time
+// using Git tags and replaced using ldflags.
+var Version = "0.0.0-dev"
+
 const (
 	PollFrequency = 1 * time.Minute
 )
@@ -47,7 +51,9 @@ Environment Variables:
   CIRCLECI_BRANCH     - limit builds to a specific branch
   CIRCLECI_ARTIFACT   - path of artifact to run (defaults to first build artifact)
   CIRCLECI_DEBUG      - enable debug log events
-`, os.Args[0])
+
+circleci-runner version %s
+`, os.Args[0], Version)
 }
 
 func init() {
