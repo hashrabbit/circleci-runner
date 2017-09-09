@@ -21,3 +21,7 @@ GO_LDFLAGS = -X main.Version=$(VERSION)
 .PHONY: build
 build:
 	$(GOX) -ldflags "$(GO_LDFLAGS)"
+
+.PHONY: clean
+clean:
+	$(RM) circleci-runner*
