@@ -18,9 +18,19 @@ VERSION = $(shell git describe --tags 2>/dev/null || echo "0.0.0-dev")
 
 GO_LDFLAGS = -X main.Version=$(VERSION)
 
+# List of os/arch targets to build binaries for.
+GOX_OSARCH = \
+	darwin/386 \
+	darwin/amd64 \
+	linux/386 \
+	linux/amd64 \
+	linux/arm \
+	windows/386 \
+	windows/amd64
+
 .PHONY: build
 build:
-	$(GOX) -ldflags "$(GO_LDFLAGS)"
+	$(GOX) -ldflags="$(GO_LDFLAGS)" -osarch="$(GOX_OSARCH)"
 
 .PHONY: clean
 clean:
