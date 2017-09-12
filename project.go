@@ -22,7 +22,7 @@ import (
 )
 
 var (
-	ErrNoBuilds = errors.New("no recent, successful builds for project")
+	ErrNoBuilds = errors.New("no recent, successful builds")
 )
 
 type Project struct {
