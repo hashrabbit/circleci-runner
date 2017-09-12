@@ -35,8 +35,6 @@ const (
 	PollFrequency = 1 * time.Minute
 )
 
-var SameBuild = errors.New("same build")
-
 var project = &Project{
 	Client: &circleci.Client{},
 }
@@ -105,6 +103,8 @@ func run(done <-chan os.Signal, artifacts <-chan *Artifact) {
 	}
 }
 
+var errSameBuild = errors.New("same build")
+
 func pollOne(curr *Build) (*Build, *Artifact, error) {
 	var err error
 	defer log.Trace("checking for new builds").Stop(&err)
@@ -114,7 +114,7 @@ func pollOne(curr *Build) (*Build, *Artifact, error) {
 		return nil, nil, err
 	}
 	if next.Equal(curr) {
-		return next, nil, SameBuild
+		return next, nil, errSameBuild
 	}
 
 	artifact, err := next.Artifact()
