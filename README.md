@@ -54,9 +54,10 @@ arguments to circleci-runner. They will be passed to your artifact like normal.
 
 The following environment variables are available:
 
-- `CIRCLECI_TOKEN` (**required**) - Your CircleCI API token from the
-  [Personal API Tokens](https://circleci.com/account/api) section of your
-  account dashboard.
+- `CIRCLECI_TOKEN` (**required**) - Your CircleCI API token. To generate a
+  token, visit the *API Permissions* tab of your CircleCI project settings page
+  and click *Create Token*. For additional security, limit its scope to
+  *Build Artifacts*.
 
 - `CIRCLECI_ACCOUNT` (**required**) - The team or personal account username that
   your project belongs to.
