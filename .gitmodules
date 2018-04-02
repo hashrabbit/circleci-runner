@@ -1,0 +1,9 @@
+[submodule "vendor/github.com/apex/log"]
+	path = vendor/github.com/apex/log
+	url = https://github.com/apex/log
+[submodule "vendor/github.com/jszwedko/go-circleci"]
+	path = vendor/github.com/jszwedko/go-circleci
+	url = https://github.com/jszwedko/go-circleci
+[submodule "vendor/github.com/pkg/errors"]
+	path = vendor/github.com/pkg/errors
+	url = https://github.com/pkg/errors
