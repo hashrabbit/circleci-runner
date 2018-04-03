@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+GO ?= go
 GOX ?= gox
 
 VERSION = $(shell git describe --tags 2>/dev/null || echo "0.0.0-dev")
@@ -31,6 +32,9 @@ GOX_OSARCH = \
 .PHONY: build
 build:
 	$(GOX) -ldflags="$(GO_LDFLAGS)" -osarch="$(GOX_OSARCH)"
+
+.PHONY: test
+	$(GO) test ./...
 
 .PHONY: clean
 clean:
