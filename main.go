@@ -20,6 +20,7 @@ import (
 	"io"
 	"os"
 	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/apex/log"
@@ -76,7 +77,7 @@ func main() {
 	}
 
 	done := make(chan os.Signal, 1)
-	signal.Notify(done, os.Interrupt, os.Kill)
+	signal.Notify(done, syscall.SIGINT, syscall.SIGTERM)
 
 	artifacts := make(chan *Artifact, 1)
 
@@ -88,7 +89,8 @@ func run(done <-chan os.Signal, artifacts <-chan *Artifact) {
 	var curr *Artifact
 	for {
 		select {
-		case <-done:
+		case sig := <-done:
+			log.WithField("signal", sig).Info("gracefully shutting down")
 			if curr != nil {
 				curr.Stop()
 			}
