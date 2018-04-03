@@ -15,11 +15,13 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"time"
 
 	"github.com/apex/log"
@@ -40,22 +42,25 @@ type Artifact struct {
 	file    string
 }
 
-func (a *Artifact) download() error {
-	var err error
-	defer log.Trace("downloading artifact").Stop(&err)
+func (a *Artifact) Name() string {
+	return fmt.Sprintf("%s-%s-%d-g%s_%s", a.Build.Username, a.Build.Reponame,
+		a.Build.BuildNum, a.Build.VcsRevision[0:7], filepath.Base(a.Path))
+}
 
-	f, err := ioutil.TempFile("", "circleci-artifact")
+func (a *Artifact) download() error {
+	f, err := ioutil.TempFile("", a.Name())
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-
 	a.file = f.Name()
 
 	if err = f.Chmod(0755); err != nil {
 		defer a.clean()
 		return err
 	}
+
+	defer log.WithField("path", a.file).Trace("downloading artifact").Stop(&err)
 
 	res, err := http.Get(a.URL + "?circle-token=" + project.Token)
 	defer res.Body.Close()
