@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - 1.5
+  - 1.6
+  - 1.7
+  - 1.8
+  - 1.9
+  - master
+
+script: make test
+
+notifications:
+  email: dev@hashrabbit.co
+  slack:
+    secure: ioKzjDirJ2q3zO2di9AQAzpqsrgYdTbc+tLoBo/25aP0F2nH9SuPqoeJc6PbQibyyd8z+46FFoeIPNqxVG65TctW9h64Dcecm60hEq4M1ex4bdwVjMUn/SZz2+p9cmmshswmEI+OS8HFvEIB34u4Ikq8h3m9ajeeaOcflGQonFDjbanpu3sYCS9giitc++8ZZxitat/HRyKmlC3OnZVvIs2K0MBiohSdC3lpFaGn3FwOMppFv4toWSYIpCOUdcAVhPe6P6UlIdDy+pWIidTSFxTmgoPXFE9uAGF43GO7Zlwv1MY7expCU0k8ENQ4vGaQI8T1lNjcfvcHQkNgVZVALJHAdShscGNtjkC2gPAiVbBLf2RWryn+rRu7hSQU8v12+EQHEM/JLjOhpnHgVLPxI+8VWB7DmYaF5/0owuMI5W4DYZqCrogr9QBCZu0/orUymqn5WD8gp5wlN6/yTjaX9lMXw9s404zG6T4S42641I4VZpS0I/EKI0rn8UUgoYvDXqbrBTVW5HXNtru2A43EAPcODuU4pjXAvxh3xEGuU7xD9hpSdmPB5x6Mw5BNwfKfkfbsvQL2slSBhwLfYa6Mkw6fUx6beVzMxzx/qCZMpsuvAaWEp4nhptQSC2XCKVtQz6sPqeekiCPPO7puvGOa92xTazJpkQimh/F+nOGyzN0=
